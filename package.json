@@ -1,0 +1,16 @@
+{
+  "name": "dummy",
+  "version": "1.0.0",
+  "description": "Dummy server",
+  "main": "dummy.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "node": "0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Defiant Carnation",
+  "license": "ISC"
+}
