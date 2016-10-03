@@ -2,6 +2,7 @@ var request = require('request-promise');
 var cheerio = require('cheerio');
 var gl = require('./getLinks.js');
 var Promise = require('bluebird');
+var fs = require('fs')
 
 var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
 var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!
@@ -12,6 +13,7 @@ exports.call = () => {
 
   request(`http://localhost:8888/links/${id}`)
   .then((data1) => {
+    //console.log('DATA',data1[]);
     data1 = JSON.parse(data1);
     extractMyLinks(data1);
     request(`http://localhost:8888/friends/${id}`)
@@ -21,9 +23,24 @@ exports.call = () => {
     });
   })
   .then(() => {
-    Promise.reduce(linksArray, (_, [link, filePath]) => {
+
+    //console.log('linksArray',linksArray.map(function(tuple){return tuple[0]}));
+
+    var alreadyStored = fs.readFileSync('currentlysaved.txt');
+    
+    linksArray = linksArray.filter(function(linkobj){
+      return alreadyStored.indexOf(linkobj[0]) === -1;
+    })
+
+    if (linksArray.length>0){
+      fs.writeFileSync('currentlysaved.txt',JSON.stringify(linksArray.map(function(tuple){return tuple[0]})));
+    
+       Promise.reduce(linksArray, (_, [link, filePath]) => {
       return gl.getPage(link, filePath);
-    }, null);
+      }, null);
+    }
+   
+
   })
   .catch((err) => {
     console.log('Error handling initial requests', err);
