@@ -1,34 +1,12 @@
-<html>
-<head>
-  <script src="jquery/dist/jquery.js"></script>
-  <script src="node_modules/jquery/dist/jquery.js"></script>
-</head>
-<body>
-  <div>
-    <nav>
-      <div className="nav-wrapper white">
-      </div>
-    </nav>
-    <div className='buttoncontainer'>
-      <h5 className="sub-head">Get started</h5>
-      <br />
-      <div className="loginBody">
-        <div className="row center">
-          <a href='/auth/facebook' className="loginBtn loginBtn--facebook">
-            Login with Facebook
-          </a>
-        </div>
-        <div className="row center">
-          <a className="loginBtn loginBtn--twitter">
-             Login with Twitter
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
+import React from 'react';
+
+class LoginContainer extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
     // The response object is returned with a status field that lets the
@@ -53,11 +31,12 @@
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
-  function checkLoginState() {
+  checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
+
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -107,18 +86,22 @@
         window.location.replace('http://localhost:3030/stash?' + 'name=' + response.name + '&id=' + response.id );
     });
   }
-</script>
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
+  render() {
+    return (
+      <div>
+        <nav>
+          <div className="nav-wrapper white"></div>
+        </nav>
+        <div className="row center">
+          <a href="/auth/facebook" id="download-button" className="btn-large waves-effect waves-light blue lighten-1">Log in with Facebook</a>
+        </div>
+        <div className="row center">
+          <a href="/auth/twitter" id="download-button" className="btn-large waves-effect waves-light teal lighten-1">Log in with Twitter</a>
+        </div>
+    </div>
+      );
+  }
+}
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-</body>
-</html>
+export default LoginContainer;
