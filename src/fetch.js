@@ -3,6 +3,28 @@ var cheerio = require('cheerio');
 var gl = require('./getLinks.js');
 var Promise = require('bluebird');
 var fs = require('fs')
+var AutoLaunch = require('auto-launch');
+ 
+var FetchAutoLauncher = new AutoLaunch({
+    name: 'Minecraft',
+    path: __dirname + '/fetch.js',
+});
+ 
+FetchAutoLauncher.enable();
+ 
+//minecraftAutoLauncher.disable(); 
+ 
+ 
+FetchAutoLauncher.isEnabled()
+.then(function(isEnabled){
+    if(isEnabled){
+        return;
+    }
+    FetchAutoLauncher.enable();
+})
+.catch(function(err){
+    // handle error 
+});
 
 var id = require('../fbkeys.js').id; //<== hard coded for now. We need to figure out how to get desktop user ID from DB
 var name = require('../fbkeys.js').name; // need a way to log int to get these before hand!

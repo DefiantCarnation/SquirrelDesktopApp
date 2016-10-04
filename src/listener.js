@@ -9,5 +9,5 @@ console.log('listener listening');
 
 listener.get('/', function(req, res) {
   fetch.call();
-  res.send('It worked, maybe.');
+  res.send('You forced an update');
 });

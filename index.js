@@ -2,6 +2,7 @@ var electron = require('electron');
 var fs = require('fs');
 var files = fs.readdirSync(__dirname);
 var authserver = require('./authserver.js');
+var firstserver = require('./firstserver.js');
 console.log(files.indexOf('fbkeys.js'));
 
 if (files.indexOf('fbkeys.js') !== -1) {
@@ -31,7 +32,7 @@ app.on('ready', function(){
       }
     });
 
-  global.login.loadURL(`http://localhost:3030`);
+  global.login.loadURL(`http://localhost:4030`);
 });
 
 
