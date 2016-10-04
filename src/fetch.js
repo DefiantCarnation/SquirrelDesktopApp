@@ -25,20 +25,36 @@ exports.call = () => {
   .then(() => {
 
     //console.log('linksArray',linksArray.map(function(tuple){return tuple[0]}));
-
-    var alreadyStored = fs.readFileSync('currentlysaved.txt');
-    
-    linksArray = linksArray.filter(function(linkobj){
+    var thisfilepath = __dirname
+    var toplevel = thisfilepath.replace('/src','');
+    if(fs.readdirSync(toplevel).indexOf('currentlysaved.txt') === -1){
+      console.log('NO previously cached file found');
+      var newLinks = linksArray.map(function(tuple){return tuple[0]});
+      fs.writeFileSync('currentlysaved.txt',JSON.stringify(newLinks));
+      Promise.reduce(linksArray, (_, [link, filePath]) => {
+      return gl.getPage(link, filePath);
+      }, null);
+    } else {
+     var alreadyStored = JSON.parse(fs.readFileSync('currentlysaved.txt'));
+      //get the newlinks
+      linksArray = linksArray.filter(function(linkobj){
       return alreadyStored.indexOf(linkobj[0]) === -1;
-    })
+      })
 
     if (linksArray.length>0){
-      fs.writeFileSync('currentlysaved.txt',JSON.stringify(linksArray.map(function(tuple){return tuple[0]})));
-    
+      //console.log('Adding',linksArray);
+      var toSave = alreadyStored.concat(linksArray.map(function(link){return link[0]}));
+      console.log('Saving',toSave);
+      console.log('Caching',linksArray);
+      fs.writeFileSync('currentlysaved.txt',JSON.stringify(toSave));
        Promise.reduce(linksArray, (_, [link, filePath]) => {
       return gl.getPage(link, filePath);
       }, null);
     }
+
+    }
+
+
    
 
   })
