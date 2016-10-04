@@ -32,7 +32,7 @@ app.on('ready', function(){
       }
     });
 
-  global.login.loadURL(`http://localhost:4030`);
+  global.login.loadURL(`http://localhost:3030`);
 });
 
 
