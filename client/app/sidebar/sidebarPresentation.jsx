@@ -9,7 +9,7 @@ var SidebarPresentation = (props) => {
 
   return (
     <div className = "easyui-panel side-nav full" style={{width: '500px', height: '600px', position: 'relative'}}>
-      <h4>folder view</h4>
+      <h4>Your folders</h4>
       {folders}	
     </div>
   );
