@@ -58,8 +58,8 @@
     <button onclick="isInternet()">Login with different fb account</button>
     <div id="app"> <!-- <===== entry point for REACT ! -->
     </div>
-    <div  class="trash" style="width:'100px';height:'100px'" data-options="onDrag:onDrag" onClick='() => (props.loadFolder(props.folder))'>
-      <img class= "trash" src="client/assets/trash.png" onDrop='function(event){drop(event)}' onDragOver='function(event){allowDrop(event)}'/>
+    <div  class="trash" style="width:'100px';height:'100px'" data-options="onDrag:onDrag">
+      <img class= "trash" src="client/assets/trash.png" ondrop='drop(event)' ondragover='allowDrop(event)'/>
     </div>
     <script>
     	const topleveldir = __dirname;
