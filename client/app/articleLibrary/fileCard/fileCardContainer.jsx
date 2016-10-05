@@ -47,23 +47,13 @@ class FileCardContainer extends React.Component {
 
   render() {
     console.log('path', this.props.path);
-
     var image = this.props.path + "/images/assetFile10.jpg";
     return (
-      <div className="row">
-      <div className='article_from_friend_card shadowDepth1' onClick={()=> { this.expand.bind(this)(this.props.path); }}>
-        <div className='friend_article_image_block'>
-          <img src={image}/>
+      <div className='articleBox' onClick={()=> { this.expand.bind(this)(this.props.path); }}>
+          <img className="articleImage" src={image}/>
+          <div className='articleTitle'>
+            <h3>{this.props.path.slice(this.findsecondslash(this.props.path)).replace('.html', '')}</h3>
         </div>
-        <div className='friend_article_image_content'>
-          <div className='friend_article_title'>
-            <h5 className = "titles">{this.props.path.slice(this.findsecondslash(this.props.path)).replace('.html', '')}</h5>
-          </div>
-          <div className='friend_article_friend_image'>
-           
-          </div>
-        </div>
-      </div>
       </div>
     );
   }

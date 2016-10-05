@@ -1,15 +1,13 @@
 import React from 'react';
 import FolderPresentation from './folderPresentation.jsx';
 
-var FolderContainer = (props) => (
-
-  <div className="easyui-draggable" style={{width: '100px', height: '100px'}} data-options="onDrag:onDrag" onClick={() => (props.loadFolder(props.folder))}>
-    <div>
-      
+const FolderContainer = (props) => {
+  const title = props.index === 0 ? 'your saved stash' : 'with love from friends';
+  return (
+    <div className="easyui-draggable folder" data-options="onDrag:onDrag" onClick={() => (props.loadFolder(props.folder))}>
+      <h4 onDrop={function(event) { drop(event); }} onDragOver={function(event) { allowDrop(event); }} >{title}</h4>
     </div>
-    <img width="30%" src="client/assets/acorn-7-xxl.png" onDrop={function(event) { drop(event); }} onDragOver={function(event) { allowDrop(event); }}/>
-    <p width="30%">{props.folder.replace('Stash/', "")}</p> 
-  </div>
-);
+  );
+};
 
 export default FolderContainer;

@@ -462,11 +462,6 @@ body {
   text-align: left;
 }
 
-.bk-image {
-  margin-top: 1em;
-  width: 100%;
-}
-
 .header {
   color: #212121;
   text-align: center;
@@ -481,14 +476,6 @@ body {
   position: absolute;
   top: 40%;
   left: 40%;
-}
-
-.article-thumbnail {
-  width: 20%;
-}
-
-.sidebar {
-  border-right: 1px solid black;
 }
 
 
@@ -575,7 +562,7 @@ img{
 
 .sidebar{
   border-right-style: solid;
-    border-right-width: 15px;
+  border-right-width: 15px;
 }
 
 #topbar{
@@ -588,11 +575,11 @@ img{
   background-color: #e64a19;
 }
 
-.titles{
+/*.titles{
   position:absolute;
   width:50%;
   vertical-align:top;
-}
+}*/
 
 .vAlign{
   vertical-align:top;
@@ -630,4 +617,58 @@ input {
   width: 70%;
   margin-left: 10px;
   margin-right: 80px;
+}
+
+.folder {
+  display: flex;
+  border: 1px solid #4db6ac;
+  border-radius: 25px;
+  width: 200px;
+  height: 35px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.acornLogo {
+  margin-top: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 20px;
+  width: auto;
+}
+
+.articleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start; 
+}
+
+.articleBox {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.articleImage {
+  width: 100%;
+  height: auto;
+}
+
+.articleTitle {
+  width: 100%;
+  height: auto;
+  margin-left: 10px;
+}
+
+.folderContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
