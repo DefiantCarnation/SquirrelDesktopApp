@@ -5,11 +5,12 @@ import FileCard from './fileCard/fileCardContainer.jsx';
 var ArticleLibraryPresentation = ({filePaths}) => {
 
   var fileCards = filePaths.map((filePath, i) => {
-    return (<FileCard path={filePath}/>)
+    console.log(filePath);
+    return (<FileCard path={filePath}/>);
   });
 
   return (
-    <div className = "easyui-panel" style={{width:'500px',height:'600px',position:'relative'}}>
+    <div className="articleContainer">
       {fileCards}
     </div>
   );

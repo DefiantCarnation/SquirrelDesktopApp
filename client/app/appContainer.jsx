@@ -1,7 +1,8 @@
+
 require('../../scss/main.scss');
 
 import React from 'react';
-import {render} from 'react-dom'
+import {render} from 'react-dom';
 import fs from 'fs';
 import path from 'path';
 import AppPresentation from './appPresentation.jsx';
@@ -21,9 +22,9 @@ class AppContainer extends React.Component {
       <div className="app-container">
         <AppPresentation folders={this.props.folders} loadFolder={this.loadFolder.bind(this)} folderPath={this.state.currentFolder}/>
       </div>
-    )
+    );
   }
-};
+}
 
 var getFolders = function() {
   var dirs = fs.readdirSync('Stash').filter((dir) => {
@@ -33,15 +34,15 @@ var getFolders = function() {
       return true;
     }
   });
-  console.log('DIRS',dirs);
+  console.log('DIRS', dirs);
   dirs = dirs.map((dir) => {
     return 'Stash/' + dir;
   });
 
   dirs.push('Stash/Me/Mine');
-  fs.readdirSync('Stash/Me/Recommended').forEach(function(path){
-    dirs.push('Stash/Me/Recommended/' + path)
-  })
+  fs.readdirSync('Stash/Me/Recommended').forEach(function(path) {
+    dirs.push('Stash/Me/Recommended/' + path);
+  });
   dirs.push('Stash/Me/Recommended');
 
   return dirs;
